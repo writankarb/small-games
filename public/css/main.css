@@ -1,0 +1,213 @@
+body, h1, h2, h3, h4, blockquote, q, .maia-nav ul {
+    font-family: 'open sans', arial, sans-serif;
+    /* font-weight: 100; */
+}
+
+body {
+    margin: 0;
+}
+
+.icon {
+    text-align: center;
+    padding: 30px 40px 0px 40px;
+}
+
+.icon-button {
+    text-align: center;
+    width: 250px;
+    margin: 0 auto;
+    border-radius: 20px;
+    border: 1px solid #bbb;
+    background-color: #fff;
+    box-shadow: 2px 2px #888;
+    cursor: pointer;
+}
+
+.icon-button:active {
+    transform: translate(1px, 2px);
+}
+
+.icon-button-text {
+    font-size: 24px;
+    font-weight: 400;
+    margin-top: 5px;
+}
+
+.home-button {
+    height: 7vh;
+    border-radius: 7vh;
+    padding: 0px;
+}
+
+.home-button:hover{
+    cursor: pointer;
+}
+
+.home-button:active{
+    transform: translate(1px, 2px);
+}
+
+.splash {
+    background-image: url("img/home-background4.jpg");
+    background-repeat: repeat;
+    height: 400px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-family: 'open sans';
+}
+
+.header0 {
+    padding-top: 30px;
+    font-size: 30px;
+    font-weight: 100;
+    color: white;
+    font-family: 'open sans';
+    text-align: center;
+    text-shadow: 3px 3px black;
+}
+
+.header1 {
+    padding-top: 20px;
+    font-size: 50px;
+    font-weight: 400;
+    color: white;
+    font-family: 'open sans';
+    text-align: center;
+    text-shadow: 4px 4px black;
+}
+
+.header2 {
+    padding-top: 10px;
+    padding-left: 230px;
+    padding-right: 230px;
+    font-size: 17px;
+    font-weight: 100;
+    color: white;
+    font-family: 'open sans';
+    text-align: center;
+    font-style: italic;
+}
+
+.bullets {
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 18px;
+    font-weight: 300;
+    color: black;
+    font-family: 'open sans';
+    text-align: center;
+}
+
+.stocksearch {
+    height: 50px;
+    border-bottom: 2px solid red;
+    text-align: center;
+    color: rgb(60, 9, 9);
+    font-size: 18px;
+    font-family: 'open sans';
+    border: none !important;
+    /* border: 1px solid lightgray; */
+    box-shadow: none !important;
+    outline: none !important;
+    border-radius: 3px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgb(255, 198, 198);
+    opacity: 1;
+    /* Firefox */
+}
+
+:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: rgb(255, 198, 198);
+}
+
+::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: rgb(255, 198, 198);
+}
+
+.stocksearchbutton {
+    /* height: 30px; */
+    width: 200px;
+    color: white;
+    font-size: 18px;
+    font-family: 'open sans';
+    font-weight: 100;
+    background-color: rgb(232, 104, 104);
+    border-radius: 5px;
+    border: none !important;
+    /* box-shadow: none !important; */
+    /* outline: none !important; */
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+}
+
+.stocksearchbutton:hover {
+    background-color: rgb(242, 218, 218);
+    color: maroon;
+    font-weight: bold;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.stocksearchbutton:active {
+    transform: translateY(2px);
+}
+
+footer {
+    margin-top: 50px;
+    position: relative;
+    height: 50px;
+    width: 100%;
+    background-color: maroon;
+}
+
+p.copyright {
+    position: absolute;
+    width: 100%;
+    color: #fff;
+    line-height: 20px;
+    font-size: 0.8em;
+    text-align: center;
+    bottom: 0;
+    font-family: 'open sans';
+}
+
+#pricing {
+    text-align: center;
+    font-size: 38px;
+    font-weight: 400;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    font-variant: small-caps;
+}
+
+/* Add this to align vertically */
+button>img,
+button>span {
+    vertical-align: middle;
+}
+
+/* Hide the white button and show the red button on hover */
+button #signupnow:first-child {
+    display: none;
+}
+
+button:hover #signupnow:first-child {
+    display: block;
+}
+
+button:hover #signupnow:last-child {
+    display: none;
+}

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Megrim&display=swap" rel="stylesheet"> -->
+    <link rel="stylesheet" href="css/main.css">
+    <title>Small Games</title>
+</head>
+
+<body>
+    <div
+        style="width: 600px; margin: 0 auto; background-color: #efefef; min-height: 100vh; border-left: 1px solid #ddd;  border-right: 1px solid #ddd;">
+        <div
+            style="background-color: #fff; color: #000; height: 40px; text-align: center; padding-top: 5px; font-size: 28px; font-weight: 100;">
+            <table style="width: 100%;">
+                <tr>
+                    <td style="width: 10px; text-align: left; padding-left: 5px;">
+                        <img src="img/icon.svg" width="25px">
+                    </td>
+                    <td style="width: 80%;">
+                        <!-- Begin game name -->
+                        Hack IT
+                        <!-- End game name -->
+                    </td>
+                    <td style="width: 10px; text-align: right; padding-right: 5px;">
+                        <img src="img/battery.svg" width="30px">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="text-align:center; padding: 5px;">
+            <!-- begin content -->
+            <style>
+                #lcdscreen {
+                    padding: 5px;
+                    border-radius: 10px;
+                    background-color: #0c8714;
+                    border: 6px solid #326134;
+                    box-shadow: 4px 4px #043407;
+                    color: #0af41a;
+                    height: 60px;
+                    font-family: 'Orbitron', sans-serif;
+                    /*font-family: 'Orbitron', sans-serif;*/
+                    font-size: 50px;
+                    padding-bottom: 10px;
+                    width: 230px;
+
+                }
+
+                .lcdnumbers {
+                    background-color: #0c8714;
+                    border: 2px solid #326134;
+                    box-shadow: 2px 2px #043407;
+                    color: #0af41a;
+                    height: 25px;
+                    font-family: 'Orbitron', sans-serif;
+                    /*font-family: 'Orbitron', sans-serif;*/
+                    font-size: 18px;
+                    /*padding-bottom: 10px;*/
+                }
+
+                .backpanel {
+                    /*padding: 20px;*/
+                    background: darkgray url('img/steelpanel.jpg') no-repeat;
+                    border: 4px solid rgb(162, 164, 163);
+                    box-shadow: 3px 3px #555;
+                }
+
+                .button {
+                    display: inline-block;
+                    color: #fff;
+                    text-shadow: 0 0 2px rgba(0, 0, 0, .3);
+                    font-family: 'Orbitron', sans-serif;
+                    box-shadow:
+                        inset 0 0 2px 0 rgba(255, 255, 255, .4),
+                        inset 0 0 3px 0 rgba(0, 0, 0, .4),
+                        inset 0 0 3px 5px rgba(0, 0, 0, .05),
+                        2px 2px 4px 0 rgba(0, 0, 0, .25);
+                    border-radius: 4px;
+                    /*padding: 8px 16px;*/
+                    font-size: 20px;
+                    font-weight: bold;
+                    line-height: 40px;
+                    position: relative;
+                    cursor: pointer;
+                    min-width: 40px;
+                    background: #8a8787;
+                }
+
+                .button:before,
+                .button:after {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    left: 2px;
+                    right: 2px;
+                    height: 3px;
+                }
+
+                .button:before {
+                    top: 0;
+                    border-bottom-left-radius: 4px;
+                    border-bottom-right-radius: 4px;
+                    background: rgba(255, 255, 255, .6);
+                    box-shadow: 0 1px 2px 0 rgba(255, 255, 255, .6);
+                }
+
+                .button:after {
+                    bottom: 0;
+                    border-top-left-radius: 4px;
+                    border-top-right-radius: 4px;
+                    background: rgba(0, 0, 0, .15);
+                    box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, .15);
+                }
+
+                .button:active {
+                    transform: translate(2px, 4px);
+                }
+
+                .light {
+                    display: inline-block;
+                    color: #fff;
+                    text-shadow: 0 0 2px rgba(0, 0, 0, .3);
+                    font-family: 'Orbitron', sans-serif;
+                    box-shadow:
+                        inset 0 0 2px 0 rgba(255, 255, 255, .4),
+                        inset 0 0 3px 0 rgba(0, 0, 0, .4),
+                        inset 0 0 3px 5px rgba(0, 0, 0, .05),
+                        2px 2px 4px 0 rgba(0, 0, 0, .25);
+                    border-radius: 4px;
+                    /*padding: 8px 16px;*/
+                    font-size: 10px;
+                    font-weight: bold;
+                    line-height: 20px;
+                    position: relative;
+                    min-width: 90%;
+                    background: #c7c5c5;
+                }
+
+                .light.green {
+                    background: #0f0;
+                }
+
+                .light.white {
+                    background: rgb(255, 249, 68);
+                }
+
+                .light.none {
+                    background: #c4c0c0;
+                }
+            </style>
+            <div style="padding: 15px;">
+                <div class="backpanel">
+                    <table style="width: 100%; height: 50px; padding: 0px; margin: 0px;" border="0" cellspacing="0"
+                        cellpadding="0">
+                        <tr>
+                            <td style="width: 40%; padding: 40px 15px 40px 15px;">
+                                <div id="lcdscreen"></div>
+                            </td>
+                            <td style="width: 60%;">
+                                <table style="width: 100%; height: 165px; padding: 0px; margin: 0px; border: 0px;">
+                                    <tr style="height: 40px;">
+                                        <td>
+                                            <table
+                                                style="width: 100%; height: 100%; padding: 0px; margin: 0px; border-collapse: collapse;"
+                                                border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td><a class="button number">1</a></td>
+                                                    <td><a class="button number">2</a></td>
+                                                    <td><a class="button number">3</a></td>
+                                                    <td><a class="button number">4</a></td>
+                                                    <td><a class="button number">5</a></td>
+                                                    <td><a class="button number">6</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a class="button number">7</a></td>
+                                                    <td><a class="button number">8</a></td>
+                                                    <td><a class="button number">9</a></td>
+                                                    <td><a class="button number">0</a></td>
+                                                    <td><a class="button" id="submit">⏎</a></td>
+                                                    <!-- <td><a class="button">⇦</a></td> -->
+                                                    <td><a class="button" id="reset">↺</a></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 15px;">
+                                        <td>
+                                            <table
+                                                style="width:100%; height: 100%; background-color: #777; box-shadow: 2px 2px black; border-radius: 6px;">
+                                                <tr>
+                                                    <td>
+                                                        <div class="mainpanel light none">&nbsp;</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="mainpanel light none">&nbsp;</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="mainpanel light none">&nbsp;</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="mainpanel light none">&nbsp;</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="mainpanel light none">&nbsp;</div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div style="font-weight: bold; text-align: left;">
+                <table style="width: 100%;">
+                    <tr>
+                        <td>
+                            Tries Remaining: <span id="timesremaining"
+                                style=" border-radius: 4px; background-color: white; padding-left: 15px; padding-right: 15px; border: 1px solid black;">15</span>
+                        </td>
+                        <td>
+                            Streak: <span id="streak"
+                                style=" border-radius: 4px; background-color: white; padding-left: 15px; padding-right: 15px; border: 1px solid black; color: green;">0</span>
+                        </td>
+                        <td style="text-align: left;">
+                            <button id="newgame" style="background-color: rgb(106, 146, 247); border-radius: 4px;">New
+                                Game</button>
+                        </td>
+                        <td style="text-align: right;">
+                            <button id="help" style="background-color: yellow; border-radius: 4px;">Help</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div style="padding: 10px 30px 0px 30px; overflow-y: auto; height: 60vh;" id="tries">
+
+            </div>
+            <script>
+                document.getElementById("help").addEventListener("click", function () {
+                    instr = "Instructions\n==========================\n\nThe aim of this game is to hack the numeric keypad and open the door.\nYou get 15 tries.\nYou have to select a five digit keycode with no repeating digits.\nOnce you have selected, press the ⏎ key to submit and check.\nAt any time, if you want to reset the keypad, press the ↺ button.\n\nFor every time you get a position and value right for a number,\nthe panel will display one green light.\nIf you get only the number right but not the position, the panel\nwill display a yellow light.\nIf both the number and positions are not correct, there will be\nno light displayed on the panel.\nThe aim is to get all green to unlock the door.\n\nHappy hacking!!!";
+                    alert(instr);
+                });
+            </script>
+            <script>
+                //Start a new game
+                document.getElementById("newgame").addEventListener("click", function () {
+                    if (document.getElementById("streaktracker").value == "Y") {
+                        hasSolved = true;
+                    } else {
+                        hasSolved = false;
+                    }
+                    var answerKey = [];
+                    while (answerKey.length < 5) {
+                        newNumber = Math.floor((Math.random() * 10));
+                        if (!answerKey.includes(newNumber)) {
+                            answerKey.push(newNumber);
+                        }
+                    }
+                    document.getElementById("answerkey").value = answerKey.join("");
+                    newGame = ["N", "E", "W", "!", "!", " "];
+                    newGamePos = 0;
+                    myInterval = setInterval(function () {
+                        document.getElementById("lcdscreen").innerHTML = document.getElementById("lcdscreen").innerHTML + newGame[newGamePos];
+                        newGamePos++;
+                        if (newGamePos == 6) {
+                            //alert("Done");
+                            clearInterval(myInterval);
+                            document.getElementById("lcdscreen").innerHTML = "";
+                        }
+                    }, 500)
+                    if (!hasSolved) {
+                        document.getElementById("streak").innerHTML = "0";
+                    }
+                    document.getElementById("streaktracker").value = "N";
+                    document.getElementById("tries").innerHTML = "";
+                    document.getElementById("timesremaining").innerHTML = "15";
+                    lcdPanel = document.getElementsByClassName("mainpanel");
+                    for (var i = 0; i < lcdPanel.length; i++) {
+                        lcdPanel[i].classList.remove("green");
+                        lcdPanel[i].classList.remove("white");
+                        lcdPanel[i].classList.remove("none");
+                        lcdPanel[i].classList.add("none");
+                    }
+                });
+
+                //Get the values from the number fields
+                buttons = document.getElementsByClassName("button number");
+                for (var i = 0; i < buttons.length; i++) {
+                    buttons[i].addEventListener("click", function () {
+                        if (document.getElementById("answerkey").value == "") {
+                            alert("Start a new game!");
+                        } else {
+                            if (document.getElementById("lcdscreen").innerHTML.length < 5) {
+                                allNumbers = document.getElementById("lcdscreen").innerHTML.split("");
+                                var alreadyExists = false;
+                                for (var j = 0; j < allNumbers.length; j++) {
+                                    if (allNumbers[j] === this.innerHTML) {
+                                        alreadyExists = true;
+                                    }
+                                }
+                                if (alreadyExists === false) {
+                                    document.getElementById("lcdscreen").innerHTML = document.getElementById("lcdscreen").innerHTML + this.innerHTML;
+                                }
+                            }
+                        }
+                    });
+                }
+
+                //reset the lcd screen
+                document.getElementById("reset").addEventListener("click", function () {
+                    document.getElementById("lcdscreen").innerHTML = "";
+                });
+
+                //submit the value and check
+                document.getElementById("submit").addEventListener("click", function () {
+                    if (document.getElementById("lcdscreen").innerHTML.length === 5) {
+                        selected = document.getElementById("lcdscreen").innerHTML.split("");
+                        answerKey = document.getElementById("answerkey").value.split("");
+                        greenLight = 0;
+                        yellowLight = 0;
+                        for (var i = 0; i < selected.length; i++) {
+                            for (var j = 0; j < answerKey.length; j++) {
+                                if (answerKey[j] == selected[i]) {
+                                    if (i == j) {
+                                        greenLight++;
+                                    } else {
+                                        yellowLight++;
+                                    }
+                                }
+                            }
+                        }
+                        lightArray = [];
+                        whiteLight = 5 - greenLight - yellowLight;
+                        for (var i = 0; i < greenLight; i++) {
+                            lightArray.push("green");
+                        }
+                        for (var i = 0; i < yellowLight; i++) {
+                            lightArray.push("white");
+                        }
+                        for (var i = 0; i < whiteLight; i++) {
+                            lightArray.push("none");
+                        }
+                        lcdPanel = document.getElementsByClassName("mainpanel");
+                        for (var i = 0; i < lcdPanel.length; i++) {
+                            lcdPanel[i].classList.remove("green");
+                            lcdPanel[i].classList.remove("white");
+                            lcdPanel[i].classList.remove("none");
+                            lcdPanel[i].classList.add(lightArray[i]);
+                        }
+                        timesRem = parseInt(document.getElementById("timesremaining").innerHTML);
+                        timesRem--;
+                        document.getElementById("timesremaining").innerHTML = timesRem;
+                        //add the latest try data to the list
+                        triesElement = document.getElementById("tries");
+                        rowElement = document.getElementById("tryline").innerHTML;
+                        rowElement = rowElement.replace("##tryno##", 15 - timesRem);
+                        for (var i = 0; i < selected.length; i++) {
+                            rowElement = rowElement.replace("##nopos" + (i + 1) + "##", selected[i]);
+                        }
+                        for (var i = 0; i < lightArray.length; i++) {
+                            rowElement = rowElement.replace("##match" + (i + 1) + "##", lightArray[i]);
+                        }
+                        triesElement.innerHTML = rowElement + triesElement.innerHTML;
+                        document.getElementById("lcdscreen").innerHTML = "";
+                        if (greenLight == 5) {
+                            alert("Yay!!! You have unlocked the door");
+                            document.getElementById("streaktracker").value = "Y";
+                            document.getElementById("streak").innerHTML = parseInt(document.getElementById("streak").innerHTML) + 1;
+                            document.getElementById("answerkey").value = "";
+                        }
+                        if(timesRem == 0 && greenLight < 5){
+                            alert("You will forever stay locked here!!!");
+                            document.getElementById("streaktracker").value = "N";
+                            document.getElementById("streak").innerHTML = 0;
+                            document.getElementById("answerkey").value = "";
+                        }
+                    }
+                });
+            </script>
+            <div style="display:none;">
+                <input type="hidden" id="answerkey">
+                <input type="hidden" id="streaktracker">
+                <div id="tryline">
+                    <div
+                        style='background-color: rgb(67, 63, 63); padding: 0px 5px 0px 5px; margin-bottom: 5px; border-radius: 10px;'>
+                        <table style='width: 100%;'>
+                            <tr>
+                                <td style='width: 5%; font-weight: bold; color: white;'>##tryno##</td>
+                                <td style='width: 60%;'>
+                                    <table style='width: 100%;'>
+                                        <tr>
+                                            <td style='width: 20%' class='lcdnumbers'>##nopos1##</td>
+                                            <td style='width: 20%' class='lcdnumbers'>##nopos2##</td>
+                                            <td style='width: 20%' class='lcdnumbers'>##nopos3##</td>
+                                            <td style='width: 20%' class='lcdnumbers'>##nopos4##</td>
+                                            <td style='width: 20%' class='lcdnumbers'>##nopos5##</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td style='width: 35%; padding-left: 10px;'>
+                                    <table
+                                        style='width:100%; height: 20px; background-color: #777; box-shadow: 2px 2px black; border-radius: 6px;'>
+                                        <tr>
+                                            <td>
+                                                <div class='light ##match1##'>&nbsp;</div>
+                                            </td>
+                                            <td>
+                                                <div class='light ##match2##'>&nbsp;</div>
+                                            </td>
+                                            <td>
+                                                <div class='light ##match3##'>&nbsp;</div>
+                                            </td>
+                                            <td>
+                                                <div class='light ##match4##'>&nbsp;</div>
+                                            </td>
+                                            <td>
+                                                <div class='light ##match5##'>&nbsp;</div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- end content -->
+        </div>
+        <div
+            style="top: 92vh; position: fixed; background-color: white; height: 8vh; width: 600px; text-align: center;">
+            <a href="/">
+                <img src="img/homebutton.png" class="home-button">
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>
